@@ -3,6 +3,9 @@ package com.ritik.boilerplatebackend.endpoints.user.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -44,5 +47,15 @@ public class User {
     }
 
 
-    public enum Role {SUPERADMIN, ADMIN, MODERATOR, CREATOR, USER, GUEST}
+
+    public enum Role {SUPER_ADMIN("SUPER_ADMIN"), ADMIN("ADMIN"), MODERATOR("MODERATOR"), CREATOR("CREATOR"), USER("USER"), GUEST("GUEST");
+        private String role;
+        Role(String role) {
+            this.role = role;
+        }
+        public String toString(){
+            return role;
+        }
+
+    }
 }
